@@ -2,12 +2,14 @@ buildscript {
 	ext {
 		kotlinVersion = '1.2.41'
 		springBootVersion = '2.0.2.RELEASE'
+		verifierVersion = '1.2.1.RELEASE'
 	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:${verifierVersion}"
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
 	}
@@ -18,6 +20,8 @@ apply plugin: 'kotlin-spring'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'spring-cloud-contract'
+
 
 group = 'com.contractdemo'
 version = '0.0.1-SNAPSHOT'
@@ -59,4 +63,8 @@ dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
+}
+
+contracts {
+	baseClassForTests = 'com.contractdemo.contractdemo.ContractVerifierBase'
 }
