@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest src/test",
+    "test": "CONTRACT_JSON_BASE_PATH=build/stubs/META-INF/com.contractdemo/contractdemo/0.0.1-SNAPSHOT/mappings jest src/test",
     "contractTests": "./scripts/runContractTests.sh"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "spring-cloud-contract-json-reader": "^1.0.2"
   },
   "devDependencies": {
     "jest": "^23.0.1"
